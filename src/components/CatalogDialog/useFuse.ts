@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import Fuse from 'fuse.js';
 import type { IFuseOptions } from 'fuse.js';
 
-export const useFuzzySearch = <ItemType>(
+export const useFuse = <ItemType>(
   items: ItemType[],
   searchableKeys: (keyof ItemType)[],
   fuseOptions?: IFuseOptions<ItemType>
@@ -11,17 +11,21 @@ export const useFuzzySearch = <ItemType>(
     () =>
       new Fuse(items, {
         keys: searchableKeys as string[],
-        threshold: 0.3,
+        threshold: 0.2,
         includeScore: false,
         ...fuseOptions,
       }),
     [items, searchableKeys, fuseOptions]
   );
 
-  const startSearching = (searchTerm: string): ItemType[] =>
-    searchTerm.trim()
-      ? fuseInstance.search(searchTerm).map((result) => result.item)
-      : items;
+  const startSearching = (searchTerm: string): ItemType[] => {
+    if (!searchTerm.trim()) {
+      return items;
+    }
+
+    const results = fuseInstance.search(searchTerm);
+    return results.map((result) => result.item);
+  };
 
   return { search: startSearching };
 };
