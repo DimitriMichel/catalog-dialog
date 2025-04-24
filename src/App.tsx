@@ -8,7 +8,7 @@ import { catalogPayload } from '@data/catalog-payload';
 import Button from '@components/UI/Button.tsx';
 
 const catalogConfig: CatalogConfig = {
-  title: 'Add Workflow',
+  title: 'Action Types',
   ...catalogPayload,
   actions: {
     add: 'Add',
@@ -32,7 +32,7 @@ const App = () => {
             onClick={() => setDialogOpen(true)}
             className='rounded-md bg-midnight px-4 py-2 text-sm font-medium text-white hover:bg-midnight/90 transition-colors'
           >
-            Add Workflow
+            Add Workflow Action
           </Button>
         </div>
 
