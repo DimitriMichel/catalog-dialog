@@ -5,10 +5,10 @@ import Header from '@components/Layout/Header';
 import { CatalogDialog } from '@components/CatalogDialog';
 import type { CatalogConfig } from './types/types.ts';
 import { catalogPayload } from '@data/catalog-payload';
+import Button from '@components/UI/Button.tsx';
 
 const catalogConfig: CatalogConfig = {
-  title: 'Add Workflow Component',
-  prompt: 'Choose a component to insert into your workflow.',
+  title: 'Add Workflow',
   ...catalogPayload,
   actions: {
     add: 'Add',
@@ -27,13 +27,13 @@ const App = () => {
         <Header breadcrumbs='Projects / Workflow' />
 
         <div className='px-6 py-4'>
-          <button
+          <Button
             type='button'
             onClick={() => setDialogOpen(true)}
-            className='rounded-md bg-blue-800 px-4 py-2 text-sm font-medium text-white hover:bg-blue-900'
+            className='rounded-md bg-midnight px-4 py-2 text-sm font-medium text-white hover:bg-midnight/90 transition-colors'
           >
-            Add Workflow Component
-          </button>
+            Add Workflow
+          </Button>
         </div>
 
         <div className='pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
