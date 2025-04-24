@@ -6,7 +6,7 @@ type HeaderProps = {
 };
 
 const Header = ({ breadcrumbs }: HeaderProps) => (
-  <header className='flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200 font-questrial'>
+  <header className='flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200'>
     <nav
       className='flex items-center space-x-2 text-sm text-gray-400'
       aria-label='Breadcrumb'

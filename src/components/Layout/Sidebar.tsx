@@ -60,7 +60,7 @@ type NavItemProps = Omit<NavItemConfig, 'key'> & {
 };
 
 const NavItem = ({ icon, label, navKey, active, onSelect }: NavItemProps) => (
-  <li className='mx-2 my-2 font-questrial'>
+  <li className='mx-2 my-2'>
     <button
       type='button'
       onClick={() => onSelect(navKey)}
@@ -78,7 +78,7 @@ const Sidebar = () => {
   const [active, setActive] = useState<NavKey>('Tasks List');
 
   return (
-    <nav className='flex h-screen flex-col font-questrial tracking-wide'>
+    <nav className='flex h-screen flex-col tracking-wide'>
       <ul className='mt-2'>
         {NAV_ITEMS.slice(0, 3).map(({ key, ...rest }) => (
           <NavItem
