@@ -22,9 +22,11 @@ const ItemCard = ({
     type='button'
     onClick={onClick}
     onDoubleClick={onDoubleClick}
-    className={`flex items-start gap-3 rounded-md p-2 text-left hover:bg-gray-100 ${
-      selected ? 'outline-2 outline-blue-500' : ''
+    className={`flex items-start gap-3 rounded-md border border-gray-200 p-2 bg-card shadow hover:bg-gray-100 ${
+      selected ? 'outline-1 outline-gray-400' : ''
     }`}
+    aria-selected={selected}
+    data-testid={`item-card-${item.id}`}
   >
     <div
       className='flex shrink-0 items-center justify-center rounded bg-gray-200'
@@ -37,7 +39,7 @@ const ItemCard = ({
       )}
     </div>
 
-    <div style={{ width: descSize[columns] }}>
+    <div style={{ width: descSize[columns], textAlign: 'left' }}>
       <p className='font-semibold'>{item.name}</p>
       <p className='text-xs text-gray-600'>{item.description}</p>
     </div>
