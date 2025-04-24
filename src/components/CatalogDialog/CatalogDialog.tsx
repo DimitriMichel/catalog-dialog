@@ -70,18 +70,30 @@ const CatalogDialog = ({ config, onClose }: Props) => {
     return results;
   }, [search, searchTerm, activeCategoryId, searchableItems]);
 
-  const triggerClose = () => onClose();
+  const triggerClose = () => {
+    onClose();
+  };
+
   const confirmAndClose = (itemId: string | null) => {
     actions.callback(itemId);
     onClose();
   };
 
   useEffect(() => {
-    const esc = (e: KeyboardEvent) => e.key === 'Escape' && triggerClose();
-    window.addEventListener('keydown', esc);
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEsc);
     cancelButtonRef.current?.focus();
-    return () => window.removeEventListener('keydown', esc);
-  }, []);
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [onClose]);
 
   return createPortal(
     <div
@@ -90,7 +102,7 @@ const CatalogDialog = ({ config, onClose }: Props) => {
     >
       <div
         className={`mx-4 w-full ${
-          columns === 1 ? 'max-w-xl' : 'max-w-3xl'
+          columns === 1 ? 'max-w-2xl' : 'max-w-3xl'
         } rounded-xl border border-gray-400 bg-white p-8 shadow`}
         onClick={(e) => e.stopPropagation()}
       >

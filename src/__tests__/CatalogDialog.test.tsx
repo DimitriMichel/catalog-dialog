@@ -11,12 +11,44 @@ describe('CatalogDialog', () => {
   afterEach(() => document.getElementById('app-modal')?.remove());
 
   it('closes on Escape', async () => {
-    const user = userEvent.setup();
-    mountDialog();
-    await user.keyboard('{Escape}');
-    await waitFor(() =>
-      expect(document.querySelector('#app-modal')!.firstChild).toBeNull()
+    const onCloseMock = vi.fn();
+    renderWithPortal(
+      <CatalogDialog
+        config={{
+          title: 'Add Workflow',
+          prompt: 'Pick something cool',
+          categories: [
+            { id: 'cat-docs', name: 'Docs' },
+            { id: 'cat-empty', name: 'Empty' },
+          ],
+          items: [
+            {
+              id: 'item-1',
+              name: 'Blinker Fluid',
+              description: 'Add Blinker Fluid',
+              tags: [],
+              category: 'cat-item-1',
+            },
+          ],
+          tags: [],
+          actions: {
+            add: 'Add',
+            cancel: 'Cancel',
+            callback: vi.fn(),
+          },
+        }}
+        onClose={onCloseMock}
+      />
     );
+
+    expect(document.querySelector('.fixed.inset-0.z-50')).not.toBeNull();
+
+    const user = userEvent.setup();
+    await user.keyboard('{Escape}');
+
+    await waitFor(() => {
+      expect(onCloseMock).toHaveBeenCalled();
+    });
   });
 
   it('double-clicking “Blinker Fluid” confirms immediately', async () => {
