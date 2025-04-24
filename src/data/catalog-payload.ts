@@ -1,26 +1,37 @@
 import { CatalogPayload } from '../types/types.ts';
-
+import CameraIcon from '@assets/icons/camera.svg';
+import GaugeIcon from '@assets/icons/gauge.svg';
+import SealCheckIcon from '@assets/icons/seal-check.svg';
+import TagIcon from '@assets/icons/tag.svg';
+import DatabaseIcon from '@assets/icons/database.svg';
+import ToolsIcon from '@assets/icons/toolbox.svg';
+import HammerIcon from '@assets/icons/hammer.svg';
 export const catalogPayload: CatalogPayload = {
   categories: [
     {
       id: 'cat-data-entry',
       name: 'Data Entry',
+      icon: DatabaseIcon,
     },
     {
       id: 'cat-photos',
       name: 'Photos',
+      icon: CameraIcon,
     },
     {
       id: 'cat-pressure-tests',
       name: 'Pressure Tests',
+      icon: GaugeIcon,
     },
     {
       id: 'cat-status',
       name: 'Status',
+      icon: SealCheckIcon,
     },
     {
       id: 'cat-tags',
       name: 'Tags',
+      icon: TagIcon,
     },
     {
       id: 'cat-tensioning',
@@ -29,10 +40,16 @@ export const catalogPayload: CatalogPayload = {
     {
       id: 'cat-tools',
       name: 'Tools',
+      icon: ToolsIcon,
     },
     {
       id: 'cat-torquing',
       name: 'Torquing',
+      icon: HammerIcon,
+    },
+    {
+      id: 'cat-duct-tape-solutions',
+      name: 'Duct Tape',
     },
   ],
   items: [
